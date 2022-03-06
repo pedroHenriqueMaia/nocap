@@ -9,11 +9,13 @@ import * as Joi from '@hapi/joi';
 import { DatabaseModule } from './database/database.moule';
 import { UserModule } from './user/user.module';
 import { GraphQLModule } from '@nestjs/graphql';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      context: ({ req }) => ({ req }),
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       debug: false,
       playground: true,
@@ -31,6 +33,7 @@ import { GraphQLModule } from '@nestjs/graphql';
     }),
     DatabaseModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
