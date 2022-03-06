@@ -1,3 +1,5 @@
+import { join } from 'path';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
@@ -5,9 +7,17 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as Joi from '@hapi/joi';
 import { DatabaseModule } from './database/database.moule';
+import { UserModule } from './user/user.module';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
   imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      debug: false,
+      playground: true,
+    }),
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         TYPEORM_HOST: Joi.string().required(),
@@ -20,6 +30,7 @@ import { DatabaseModule } from './database/database.moule';
       }),
     }),
     DatabaseModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
