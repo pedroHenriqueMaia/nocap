@@ -19,7 +19,7 @@ export class Publication {
 
   @Field()
   @Column()
-  like = 0;
+  like:number = 0;
 
   @Field()
   @Column()
