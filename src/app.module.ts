@@ -1,3 +1,4 @@
+import { PublicationModule } from './ publication/publication.module';
 import { join } from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
@@ -34,6 +35,7 @@ import { AuthModule } from './auth/auth.module';
     DatabaseModule,
     UserModule,
     AuthModule,
+    PublicationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

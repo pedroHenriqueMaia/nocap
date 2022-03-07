@@ -7,6 +7,16 @@ type User {
   name: String!
   email: String!
   bio: String!
+  publication: [Publication!]!
+}
+
+type Publication {
+  id: String!
+  title: String!
+  message: String!
+  like: Float!
+  publication_date: Float!
+  user: String!
 }
 
 type AuthType {
@@ -18,11 +28,17 @@ type Query {
   Users: [User!]!
   UserById(id: String!): User!
   UserByEmail(email: String!): User!
+  Publications: [Publication!]!
+  PublicationById(id: String!): Publication!
+  PublicationByEmail(email: String!): Publication!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   login(data: AuthInput!): AuthType!
+  createPublication(createPublicationInput: CreatePublicationInput!): Publication!
+  updatePublication(updatePublicationInput: UpdatePublicationInput!): Publication!
+  liked(id: String!): String!
 }
 
 input CreateUserInput {
@@ -35,4 +51,21 @@ input CreateUserInput {
 input AuthInput {
   email: String!
   password: String!
+}
+
+input CreatePublicationInput {
+  title: String!
+  message: String!
+  publication_date: Float!
+  like: Float = 0
+  user: String!
+}
+
+input UpdatePublicationInput {
+  title: String
+  message: String
+  publication_date: Float
+  like: Float = 0
+  user: String
+  id: String!
 }
