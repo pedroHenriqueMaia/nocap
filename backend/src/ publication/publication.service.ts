@@ -79,6 +79,26 @@ export class PublicationService {
 
     return '';
   }
+  async unliked(idPublication: string) {
+    const publication = await this.findById(idPublication);
+    if (publication) {
+      const teste = await this.publicationRepository
+        .createQueryBuilder()
+        .update('publication')
+        .set({
+          like: publication.like - 1,
+        })
+        .where('id = :id', { id: publication['id'] })
+        .execute();
+      if (teste) {
+        return 'yep';
+      } else {
+        return 'nop';
+      }
+    }
+
+    return '';
+  }
 
   // async remove(id: string): Promise<string> {
   //   const deletePublication = await this.publicationRepository.delete(id);

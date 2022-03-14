@@ -62,50 +62,52 @@ function CreateCount() {
   }
   
   return (
-    <div className="wrapper">
-        <div className="logo"> <img src={nocap} alt="" /> </div>
-        <div className="text-center mt-4 name"> NoCap </div>
-        <form onSubmit={onSubmit} className="p-3 mt-3">
-            <div className={error || erroInput || erroPassword ? "alert alert-danger" : ''}>
-              {error ? error.message : ''}
-              <br></br>
-              {erroPassword ? erroPassword : ''}
-              <br></br>
-              {erroInput ? erroInput : ''}
-            </div>
-            <div className="form-field d-flex align-items-center">
-              <span className="far fa-user"></span>
-              <input type="email" name="email" id="email" placeholder="E-mail" value={values.email}
-              onChange={onChanges}/> 
-            </div>
+    <div id="card2" className="card text-center">
+          <div className="card-body">
+            <div className="logo"> <img src={nocap} alt="" /> </div>
+            <h2 className="text-center mt-4 name"> NoCap </h2>
+              <form onSubmit={onSubmit} className="p-3 mt-3">
+                  <div className={error || erroInput || erroPassword ? "alert alert-danger" : ''}>
+                    {error ? error.message : ''}
+                    <br></br>
+                    {erroPassword ? erroPassword : ''}
+                    <br></br>
+                    {erroInput ? erroInput : ''}
+                  </div>
+                  <div className="form-field d-flex align-items-center">
+                    <span className="far fa-user"></span>
+                    <input className="form-control" type="email" name="email" id="email" placeholder="E-mail" value={values.email}
+                    onChange={onChanges}/> 
+                  </div>
 
-            <div className="form-field d-flex align-items-center">
-              <span className="fas fa-key"></span>
-              <input type="text" name="name" id="name" placeholder="Name" value={values.name}
-              onChange={onChanges}/>
-            </div> 
+                  <div className="form-field d-flex align-items-center">
+                    <span className="fas fa-key"></span>
+                    <input className="form-control" type="text" name="name" id="name" placeholder="Name" value={values.name}
+                    onChange={onChanges}/>
+                  </div> 
 
-            <div className="form-field d-flex align-items-center">
-              <span className="fas fa-key"></span>
-              <input type="password" name="password" id="pwd" placeholder="Password" value={values.password}
-              onChange={onChanges}/>
-            </div>
+                  <div className="form-field d-flex align-items-center">
+                    <span className="fas fa-key"></span>
+                    <input className="form-control" type="password" name="password" id="pwd" placeholder="Password" value={values.password}
+                    onChange={onChanges}/>
+                  </div>
 
-            <div className="form-field d-flex align-items-center">
-              <span className="fas fa-key"></span>
-              <input type="password" name="password2" id="pwd2" placeholder="Confirm Password" value={values.password2}
-              onChange={onChanges}/>
-            </div>
+                  <div className="form-field d-flex align-items-center">
+                    <span className="fas fa-key"></span>
+                    <input className="form-control" type="password" name="password2" id="pwd2" placeholder="Confirm Password" value={values.password2}
+                    onChange={onChanges}/>
+                  </div>
 
-            <div className="form-field d-flex align-items-center">
-              <span className="fas fa-key"></span>
-              <input type="text" name="bio" id="bio" placeholder="Biografia" value={values.bio}
-              onChange={onChanges}/>
-            </div> 
+                  <div className="form-field d-flex align-items-center">
+                    <span className="fas fa-key"></span>
+                    <input className="form-control" type="text" name="bio" id="bio" placeholder="Biografia" value={values.bio}
+                    onChange={onChanges}/>
+                  </div> 
 
-            <button type="submit" className="btn mt-3">Entrar</button>
-        </form>
+                  <button type="submit" className="btn mt-3">Cadastrar</button>
+              </form>
         <div className="text-center fs-6"><a href="/login">Voltar</a></div>
+      </div>
     </div>
   );
 }

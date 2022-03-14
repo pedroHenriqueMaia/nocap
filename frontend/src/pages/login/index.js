@@ -3,8 +3,9 @@ import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import "./login.css";
 import nocap from "../../images/nocap.jpg";
-import Spinner from "../../components/spinner";
+
 import storeContext from "../../components/context/"
+import Spinner from "../../components/spinner";
 
 
 function PagesLogin() {
@@ -14,6 +15,7 @@ function PagesLogin() {
   });
   const { setToken } = useContext(storeContext);
   const history = useHistory();
+  const [erroInput, setErroInput] = useState('');
 
   
   const onChanges = (event) => {
@@ -22,8 +24,6 @@ function PagesLogin() {
   
   const [login, {loading, error}] = useMutation(LOGIN, {
     update(proxy, result){
-
-      console.log(result.data.login.token)
       if(result.data.login.token){
         setToken(result.data.login);
         return history.push('/')
@@ -39,9 +39,11 @@ function PagesLogin() {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    if(values.email === '' || values.password === ''){
+      setErroInput('Preenhca os campos!');
+      return
+    }
     login();
-
-    console.log()
   }
   
   if(loading){
@@ -49,28 +51,37 @@ function PagesLogin() {
   }
   
   return (
-    <div className="wrapper">
-        <div className="logo"> <img src={nocap} alt="" /> </div>
-        <div className="text-center mt-4 name"> NoCap </div>
-        <form onSubmit={onSubmit} className="p-3 mt-3">
-            <div className={error ? "alert alert-danger" : ''}>
-              {error ? error.message : ''}
-            </div>
-            <div className="form-field d-flex align-items-center">
-              <span className="far fa-user"></span>
-              <input type="email" name="email" id="email" placeholder="E-mail" value={values.email}
-              onChange={onChanges}/> 
-            </div>
+    <div className="container">
+      
+        <div id="card" className="card text-center">
+          <div className="card-body">
+            <div className="logo"> <img src={nocap} alt="" /> </div>
+            <h2 className="text-center mt-4 name"> NoCap </h2>
+            <form onSubmit={onSubmit} className="p-3 mt-3">
+                <div className={error ? "alert alert-danger" : ''}>
+                  {error ? error.message : ''}<br></br>
+                </div>
 
-            <div className="form-field d-flex align-items-center">
-              <span className="fas fa-key"></span>
-              <input type="password" name="password" id="pwd" placeholder="Password" value={values.password}
-              onChange={onChanges}/>
-            </div> 
+                <div className={error || erroInput ? "alert alert-danger" : ''}>
+                  {error ? error.message : ''}<br></br>
+                  {erroInput ? erroInput : ''}<br></br>
+                </div>
+            
+                <div className="input-group input-group-sm mb-3">
+                  <input className="form-control" type="email" name="email" id="email" placeholder="E-mail" value={values.email}
+                  onChange={onChanges}/>
+                </div>
 
-            <button type="submit" className="btn mt-3">Entrar</button>
-        </form>
-        <div className="text-center fs-6"><a href="/create-count">Cadastre-se</a></div>
+                <div class="input-group input-group-sm mb-3">
+                <input className="form-control" type="password" name="password" id="pwd" placeholder="Password" value={values.password}
+                onChange={onChanges}/>
+                </div>
+
+                <button type="submit" className="btn mt-3">Entrar</button>
+            </form>
+            <div className="text-center fs-6"><a href="/create-count">Cadastre-se</a></div>
+        </div>
+      </div>
     </div>
   );
 }

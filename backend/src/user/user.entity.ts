@@ -3,7 +3,7 @@ import { hasPasswordTranform } from './../common/helpers/crypto';
 import { ObjectType, Field, HideField } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
-@Entity()
+@Entity('users')
 @ObjectType()
 export class User {
   @Field()
@@ -25,10 +25,6 @@ export class User {
   @Field()
   @Column({ nullable: true })
   bio: string;
-
-  @OneToMany(() => Publication, (publication) => publication.user)
-  @Field(() => [Publication])
-  publication: Publication[];
 
   constructor(user?: Partial<User>) {
     this.id = user?.id;

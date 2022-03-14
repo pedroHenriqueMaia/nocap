@@ -1,3 +1,4 @@
+import { User } from './../../user/user.entity';
 import { IsNotEmpty, IsString } from 'class-validator';
 import { InputType, Field } from '@nestjs/graphql';
 
@@ -15,7 +16,7 @@ export class CreatePublicationInput {
 
   @Field()
   @IsNotEmpty()
-  publication_date: number;
+  publication_date: string;
 
   @Field()
   like?: number = 0;

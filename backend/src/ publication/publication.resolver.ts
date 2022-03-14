@@ -50,6 +50,11 @@ export class PublicationResolver {
     return await this.PublicationsService.liked(id);
   }
 
+  @Mutation(() => String)
+  async unliked(@Args('id', { type: () => String }) id: string) {
+    return await this.PublicationsService.unliked(id);
+  }
+
   // @Mutation(() => Publication)
   // removePublication(@Args('id', { type: () => String }) id: string) {
   //   return this.PublicationsService.remove(id);

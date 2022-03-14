@@ -1,0 +1,13 @@
+.like{
+    position: float;
+    text-align: right;
+}
+
+.like span {
+    margin-top: -10px;
+}
+
+.card{
+    margin-top: 15px;
+}
+

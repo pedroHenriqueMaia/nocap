@@ -23,13 +23,11 @@ export class Publication {
 
   @Field()
   @Column()
-  publication_date: number;
+  publication_date: string;
 
-  @ManyToOne(() => User, (user) => user.publication, {
-    onDelete: 'CASCADE',
-  })
+  @Column()
   @Field(() => String)
-  user: User['id'];
+  user: string;
 
   constructor(publication?: Partial<Publication>) {
     this.id = publication?.id;
