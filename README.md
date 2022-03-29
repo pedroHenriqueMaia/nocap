@@ -12,7 +12,7 @@ $ npm run build
 $ docker-compose up
 ```
 
-## Comando para subir o fronten na porta 3000 no localhost
+## Comando para subir o frontend na porta 3000 no localhost
 partindo da raiz do projeto
 ```
 $ cd frontend
